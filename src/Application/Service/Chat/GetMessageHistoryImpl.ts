@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { GetMessageHistoryUseCase } from "src/Application/Ports/In/GetMessageHistoryUseCase";
+import { GetMessageHistoryUseCase } from "src/Application/Ports/In/Chat/GetMessageHistoryUseCase";
 import type { ChatRepository } from "src/Domain/Repository/ChatRepository";
 import { CHAT_PORTS } from "src/Application/Ports/Out/ChatTokens";
 import { Message } from "src/Domain/Model/Message";

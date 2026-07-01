@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Post, Query } from "@nestjs/common";
 import { Inject, Injectable } from "@nestjs/common";
 import { ApiQuery, ApiTags } from "@nestjs/swagger";
-import type { GetMessageHistoryUseCase } from "src/Application/Ports/In/GetMessageHistoryUseCase";
+import type { GetMessageHistoryUseCase } from "src/Application/Ports/In/Chat/GetMessageHistoryUseCase";
 import { CHAT_PORTS } from "src/Application/Ports/Out/ChatTokens";
 import { Chat } from "src/Domain/Model/Chat";
 import { UserRole } from "src/Domain/Model/Enum/UserRole";

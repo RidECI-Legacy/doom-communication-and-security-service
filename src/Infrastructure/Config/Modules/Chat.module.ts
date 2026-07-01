@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { CHAT_PORTS } from "src/Application/Ports/Out/ChatTokens";
 import { sendMessageImpl } from "src/Application/Service/Chat/SendMessagesImpl";
 import { RabbitConfig } from "src/Infrastructure/Config/Rabbit/Rabbit.Config";
-import { ChatSocketController } from "src/Infrastructure/Inbound/ChatSocketController";
+import { ChatSocketController } from "src/Infrastructure/Inbound/Chat/ChatSocketController";
 import { ChatRedisCache } from "src/Infrastructure/Outbound/Redis/ChatRedis";
 import { TravelCancelledListener } from "src/Infrastructure/Outbound/Rabbit/TravelCancelledListener";
 import { TravelCompletedListener } from "src/Infrastructure/Outbound/Rabbit/TravelCompletedListener";
@@ -10,7 +10,7 @@ import { TravelCreatedListener } from "src/Infrastructure/Outbound/Rabbit/Travel
 import { TravelPassengersUpdatedListener } from "src/Infrastructure/Outbound/Rabbit/TravelPassengersUpdated";
 import { TravelUpdatedListener } from "src/Infrastructure/Outbound/Rabbit/TravelUpdatedListener";
 import { ChatWebSocket } from "src/Infrastructure/Outbound/WebSocket/ChatWebSocket";
-import { ChatController } from "src/Infrastructure/Inbound/ChatController";
+import { ChatController } from "src/Infrastructure/Inbound/Chat/ChatController";
 import { GetMessageHistoryImpl } from "src/Application/Service/Chat/GetMessageHistoryImpl";
 
 

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { SendMessageUseCase } from "src/Application/Ports/In/SendMessageUseCase";
+import { SendMessageUseCase } from "src/Application/Ports/In/Chat/SendMessageUseCase";
 import { CHAT_PORTS } from "src/Application/Ports/Out/ChatTokens";
 import type { ChatWs } from "src/Application/Ports/Out/ChatWs"
 import { Chat } from "src/Domain/Model/Chat";

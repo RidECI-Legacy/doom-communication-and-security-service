@@ -1,9 +1,9 @@
 import { Inject } from "@nestjs/common";
 import { ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway, WebSocketServer } from "@nestjs/websockets";
-import type { SendMessageUseCase } from "src/Application/Ports/In/SendMessageUseCase";
+import type { SendMessageUseCase } from "src/Application/Ports/In/Chat/SendMessageUseCase";
 import { CHAT_PORTS } from "src/Application/Ports/Out/ChatTokens";
 import {Socket, Server} from "Socket.io"
-import { ChatWebSocket } from "../Outbound/WebSocket/ChatWebSocket";
+import { ChatWebSocket } from "../../Outbound/WebSocket/ChatWebSocket";
 import { SendMessageDto } from "./ChatSocketDTOS";
 
 

@@ -11,9 +11,9 @@ import { RabbitConfig } from "src/Infrastructure/Config/Rabbit/Rabbit.Config";
     ChatModule,
     RedisModule,
     ReportModule,
-    RabbitConfig
+    
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,RabbitConfig],
 })
 export class AppModule {}

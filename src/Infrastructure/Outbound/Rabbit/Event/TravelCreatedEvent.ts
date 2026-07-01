@@ -1,3 +1,5 @@
+import { Location } from "src/Domain/Model/Location";
+
 export type TravelCreatedEvent ={
   travelId: string;
   organizerId: number;

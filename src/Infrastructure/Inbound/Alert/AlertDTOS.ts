@@ -14,3 +14,4 @@ export class PanicButtonResponse{
         public content : string
     ){}
 }
+

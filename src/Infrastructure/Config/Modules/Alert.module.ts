@@ -6,6 +6,8 @@ import { AlertController } from "src/Infrastructure/Inbound/Alert/AlertControlle
 
 import { RouteDeviationListener } from "src/Infrastructure/Outbound/Rabbit/Alert/RouterDeviationListener";
 import { AlertRedisCache } from "src/Infrastructure/Outbound/Redis/AlertRedis";
+import { ChatModule } from './Chat.module';
+import { RabbitConfig } from '../Rabbit/Rabbit.Config';
 
 
 @Module({
@@ -13,6 +15,7 @@ import { AlertRedisCache } from "src/Infrastructure/Outbound/Redis/AlertRedis";
       AlertController
     ],
     providers: [
+        RabbitConfig,
         RouteDeviationListener,
         {
           provide: ALERT_PORTS.manageAlert, 
@@ -27,6 +30,6 @@ import { AlertRedisCache } from "src/Infrastructure/Outbound/Redis/AlertRedis";
           useClass: UsePanicButtonUseImpl
         }
     ],
-    
+  imports: [ChatModule],
 })
-export class ReportModule {}
+export class AlertModule {}

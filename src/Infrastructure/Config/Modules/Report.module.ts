@@ -8,38 +8,38 @@ import { ReportUserImpl } from "src/Application/Service/Report/ReportUserImpl";
 
 import { ReportController } from "src/Infrastructure/Inbound/Report/ReportController";
 import { PrismaReportRepository } from "src/Infrastructure/Outbound/Prisma/PrismaReportRepository";
+import { CHAT_PORTS } from '../../../Application/Ports/Out/ChatTokens';
+import { ChatModule } from './Chat.module';
 
 
 @Module({
-    controllers: [
-      ReportController
-    ],
-    providers: [
-      {
-        provide: REPORT_PORTS.ReportUserUseCase, 
-        useClass: ReportUserImpl,
-      },
-      {
-        provide: REPORT_PORTS.ReportRepository, 
-        useClass: PrismaReportRepository,
-      },
-      {
-        provide: REPORT_PORTS.GetReportsUseCase, 
-        useClass: GetReportUseCaseImpl,
-      },
-      {
-        provide: REPORT_PORTS.GetReportByIdUseCase, 
-        useClass: GetReportByIdUseCaseImpl,
-      },
-      {
-        provide: REPORT_PORTS.ManageReportUseCase, 
-        useClass: ManageReportImpl,
-      },
-      {
-        provide: REPORT_PORTS.GetUserReportsUseCase, 
-        useClass: GetUserReportsImpl,
-      },
-      ],
-    
+  controllers: [ReportController],
+  providers: [
+    {
+      provide: REPORT_PORTS.ReportUserUseCase,
+      useClass: ReportUserImpl,
+    },
+    {
+      provide: REPORT_PORTS.ReportRepository,
+      useClass: PrismaReportRepository,
+    },
+    {
+      provide: REPORT_PORTS.GetReportsUseCase,
+      useClass: GetReportUseCaseImpl,
+    },
+    {
+      provide: REPORT_PORTS.GetReportByIdUseCase,
+      useClass: GetReportByIdUseCaseImpl,
+    },
+    {
+      provide: REPORT_PORTS.ManageReportUseCase,
+      useClass: ManageReportImpl,
+    },
+    {
+      provide: REPORT_PORTS.GetUserReportsUseCase,
+      useClass: GetUserReportsImpl,
+    },
+  ],
+  imports: [ChatModule],
 })
 export class ReportModule {}

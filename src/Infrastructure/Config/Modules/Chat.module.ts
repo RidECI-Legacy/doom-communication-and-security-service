@@ -15,34 +15,32 @@ import { GetMessageHistoryImpl } from "src/Application/Service/Chat/GetMessageHi
 
 
 @Module({
-    controllers: [
-      ChatController
-    ],
-    providers: [
-        RabbitConfig,
-        ChatSocketController,
-        TravelCreatedListener,
-        TravelUpdatedListener,
-        TravelPassengersUpdatedListener,
-        TravelCompletedListener,
-        TravelCancelledListener,
-        {
-          provide: CHAT_PORTS.SendMessageUseCase, 
-          useClass: sendMessageImpl,
-        },
-        {
-          provide: CHAT_PORTS.ChatWs,
-          useClass: ChatWebSocket,
-        },
-        {
-          provide: CHAT_PORTS.ChatRepository, 
-          useClass: ChatRedisCache,
-        },
-        {
-          provide: CHAT_PORTS.GetMessageHistoryUseCase,
-          useClass: GetMessageHistoryImpl,
-        },
-      ],
-    
+  controllers: [ChatController],
+  providers: [
+    RabbitConfig,
+    ChatSocketController,
+    TravelCreatedListener,
+    TravelUpdatedListener,
+    TravelPassengersUpdatedListener,
+    TravelCompletedListener,
+    TravelCancelledListener,
+    {
+      provide: CHAT_PORTS.SendMessageUseCase,
+      useClass: sendMessageImpl,
+    },
+    {
+      provide: CHAT_PORTS.ChatWs,
+      useClass: ChatWebSocket,
+    },
+    {
+      provide: CHAT_PORTS.ChatRepository,
+      useClass: ChatRedisCache,
+    },
+    {
+      provide: CHAT_PORTS.GetMessageHistoryUseCase,
+      useClass: GetMessageHistoryImpl,
+    },
+  ],
+  exports: [CHAT_PORTS.ChatRepository, RabbitConfig],
 })
 export class ChatModule {}

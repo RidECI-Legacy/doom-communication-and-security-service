@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ReportStatus {
+  PENDING
+  RESOLVED
+  REJECTED
+}
+
+enum UserRole {
+  DRIVER
+  PASSENGER
+  ADMIN
+}
+
+model Report {
+  reportId                String       @id @default(uuid())
+  reportDescription       String       @db.Text
+  reportStatus            ReportStatus @default(PENDING)
+  reportCreatedAt         DateTime     @default(now())
+  reportUpdatedAt         DateTime     @updatedAt
+  reportUserId            Int
+  reportedParticipantId   Int
+  reportTravelId          String
+
+  chat                    Chat?
+
+  @@index([reportUserId])
+  @@index([reportTravelId])
+  @@index([reportStatus])
+  @@map("reports")
+}
+
+model Chat {
+  chatId        String    @id @default(uuid())
+  travelId      String
+  driverId      Int?
+  active        Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+
+  reportId      String    @unique
+  report        Report    @relation(fields: [reportId], references: [reportId], onDelete: Cascade)
+
+  messages      Message[]
+  participants  ChatParticipant[]
+
+  @@index([travelId])
+  @@map("chats")
+}
+
+model ChatParticipant {
+  id        String   @id @default(uuid())
+  chatId    String
+  userId    Int
+  userRole  UserRole
+  joinedAt  DateTime @default(now())
+
+  chat      Chat     @relation(fields: [chatId], references: [chatId], onDelete: Cascade)
+
+  @@unique([chatId, userId])
+  @@map("chat_participants")
+}
+
+model Message {
+  messageId   String   @id @default(uuid())
+  chatId      String
+  senderId    Int
+  content     String   @db.Text
+  timestamp   DateTime @default(now())
+
+  chat        Chat     @relation(fields: [chatId], references: [chatId], onDelete: Cascade)
+
+  @@index([chatId])
+  @@index([timestamp])
+  @@map("messages")
+}

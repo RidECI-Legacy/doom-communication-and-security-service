@@ -17,7 +17,7 @@ export class GetUserReportsImpl implements GetUserReportUseCase{
                 return await this.reportRepository.findByUserId(userId);
             } catch (error) {
                 throw new InternalServerErrorException(
-                    'Error retrieving user reports',
+                    'Error retrieving user reports' + error,
                 );
             }
         }

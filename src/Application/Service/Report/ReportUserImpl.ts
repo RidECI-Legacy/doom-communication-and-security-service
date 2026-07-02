@@ -36,6 +36,7 @@ export class ReportUserImpl implements ReportUserUseCase{
         );
 
         const chat : Chat = await this.chatRepository.findByTravelId(reportDTO.reportTravelId);
+        console.log("Chat del report:" , chat)
         this.reportRepository.saveChat(chat,report.reportId);
         return await this.reportRepository.save(report);
     }

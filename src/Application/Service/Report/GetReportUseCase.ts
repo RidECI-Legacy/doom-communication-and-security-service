@@ -16,7 +16,7 @@ export class GetReportUseCaseImpl implements GetReportsUseCase{
                 return await this.reportRepository.findAll();
             } catch (error) {
                 throw new InternalServerErrorException(
-                    'Error retrieving reports',
+                    'Error retrieving reports' + error,
                 );
             }
         }
